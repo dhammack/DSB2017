@@ -25,6 +25,23 @@ _, contours, _ = cv2.findContours(img,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
 
 ```
 
+### REQUIRED DATA
+
+for training: 
+LUNA16 - neural net models were trained only on this data. note you will need the annotations_enhanced.csv file included in this repo which contains LIDC radiologist annotations for the LUNA16 nodules.
+
+NDSB 2017 stage1 data - used for training final diagnosis model (not a neural network)
+
+for scoring:
+
+any dataset of DICOM files.
+
+
+### Actually using this
+
+If you are interested in actually using this code in a real application rather than just replicating my work, please reach out. This code is unnecessarily complicated due to the cutthroat and very hasty nature of Kaggle competitions. It could be considerably simplified and sped up with no loss in performance. Furthermore, now that the competition is over and I have time to think clearly, I know of several ways to improve the performance of this system. 
+
+
 
 TODO: this readme.
 
