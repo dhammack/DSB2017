@@ -12,5 +12,19 @@ Most, if not every, python script in this repo currently use absolute filepaths 
 Also I sometimes make modifications to my local Keras install to try out new things. I'm planning on going over my code to check for these but I haven't done it yet. If you get a strange error where my code is trying to use a feature in Keras that doesn't exist, this is probably what happened. As far as I can recall the only times this should happen are custom initializations (orthogonal and looks-linear are the two that I may have done this with) and custom activations (I don't think I used any of these...).
 
 
+Also - I have noticed that a newer version of OpenCV can break some of my code. If you get OpenCV errors, change the following line:
+
+```
+contours, _ = cv2.findContours(img,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
+
+```
+To:
+
+```
+_, contours, _ = cv2.findContours(img,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
+
+```
+
+
 TODO: this readme.
 
