@@ -1,0 +1,29 @@
+this is where most of the ensemble 1 models were trained.
+
+
+ENSEMBLE 1 models
+
+model34 = load_model(r"D:\Dlung\model_LUNA_64_v34_describer_24.h5")
+model_v29 = load_model(r"F:\Flung\model_LUNA_64_v29_14.h5")
+model_multi_relu = load_model(r"F:\Flung\descriptor models\model_des_v35_multi_64_24.h5")
+model_sigmoid = load_model(r"F:\Flung\descriptor models\model_des_v35_sigmoid_64_24.h5")
+model34_repl = load_model(r"F:\Flung\descriptor models\model_des_v34_repl_64_24.h5")
+model35_relu = load_model(r"F:\Flung\descriptor models\model_des_v35_relu_64_24_multiout.h5")
+model_v36_mse_ft = load_model(r"F:\Flung\descriptor models\model_des_v36_mse_64_finetune_02.h5")
+model_relu_s2 = load_model(r"F:\Flung\descriptor models\model_des_v35_relu_s2_64_24.h5")
+
+
+model34 and model_v29 were built in DLung
+
+model_sigmoid - malig_only_v35_relu_sigmoid.py
+model_multi_relu - malig_only_v35_relu_multiobj.py
+model34_repl - build_nodule_describer_v34_replicate.py
+model_v36_mse_ft = nodule_des_v36.py
+model35_relu_s2 - malig_only_v35_relu_newschedule.py
+model35_relu - multi_output_v35_branch.py (USES DROPOUT????)
+
+
+ENSEMBLE 2 models trained in this location: 
+
+nodule_des_v37c
+nodule_des_v37 

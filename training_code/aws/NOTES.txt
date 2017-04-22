@@ -1,0 +1,38 @@
+As of 4/22/2017 12pm I have not yet updated the filepaths in these .py files. 
+If this has still not been done then you will need to change them to point to appropriate locations on your machine.
+I am planning to do it.
+
+
+
+some models were trained on local, some on aws. 
+ALL models in the first ensemble were trained local
+
+v37 was trained local
+v37c was trained local
+the remaining models in the 2nd ensemble were trained on aws
+
+
+ALL MODELS - 
+I often ran the 32 sized model first and then analyzed it before re-running with the 64 enabled.
+Thus the pretraining code is sometimes commented out in the original submission, but it should be enabled if you want to replicate the models.
+fast_start is a trick I used to speed up training. It uses a preiviously generated dataset instead of re-generating it before training each model.
+It is safer to have it off when trying to replicate my models
+
+
+
+nodule_des_v37d - I first built this model with PReLUs and saw that it overfit (as PReLUs always seem to do).
+So I tried freezing the prelu weights at epoch 12 but that didn't help much.
+I then changed the activation to relus, loaded the weights from the frozen PReLU model, and re-ran.
+
+Thus I've broken the training into three parts. 
+
+nodule_des_v37d_part1.py - build a prelu model for 12 epochs
+nodule_des_v37d_part2.py - freeze the prelu weights and continue training from epoch 12
+nodule_des_v37d_part3.py - load the frozen prelu model @ ep24 and use it to initialize a relu model (size 64). train this for the usual length of time but starting at epoch 15.
+
+nodule_des_v37f - nice clean run with no modifications required (except to uncomment the pretraining code)
+
+nodule_des_v37g - nice clean run with no modifications required
+
+nodule_des_v38 - training was paused and resumed at epoch 13. code has been modified to not stop at epoch 13.
+
