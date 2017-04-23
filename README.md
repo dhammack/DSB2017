@@ -2,6 +2,8 @@
 
 This is my contribution to the 2017 NDSB 2nd place team solution. The other half is located here https://github.com/juliandewit/kaggle_ndsb2017
 
+For documentation and technical details, see the file here: https://github.com/dhammack/DSB2017/blob/master/dsb_2017_daniel_hammack.pdf.
+
 scoring_code: location of code which replicates the submission for stage 2 of the competition. Trained models will eventually go here once I have checked that it is OK to upload them. You will not be able to run this code until the models have been uploaded.
 
 training_code: location of the code to rebuild the models required for scoring my part of the solution.
