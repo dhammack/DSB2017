@@ -157,7 +157,32 @@ def process_voxels(voxels, locs, sizes):
 
 # print 'loaded', voxels.shape[0], 'candidates'
 
-model34 = load_model(r"D:\Dlung\model_LUNA_64_v34_describer_24.h5")
+from keras import backend as K
+def looks_linear_init(shape, name=None,dim_ordering='th'):
+        #conv weights are of shape: (output, input, x1, x2, x3)
+        #we want each output to be orthogonal...
+        flat_shape = (shape[0], np.prod(shape[1:]))
+        assert shape[1] > 1
+
+        a = np.random.normal(0.0, 1.0, flat_shape)
+        u, _, v = np.linalg.svd(a, full_matrices=False)
+        # Pick the one with the correct shape.
+        q = u if u.shape == flat_shape else v
+        q = q.reshape(shape)
+        q = q * 1.2 #gain
+        #now q is orthogonal and the right size.
+        #make it look linear
+        if shape[1] % 2 == 0:
+                nover2 = shape[1] / 2
+                qsub = q[:,:nover2]
+                q = np.concatenate([qsub, -1*qsub],axis=1)
+        else:
+                nover2 = int(shape[1] / 2) #needs one more row
+                qsub = q[:,:nover2]
+                q = np.concatenate([qsub, -1*qsub, q[:,-1:]],axis=1)
+        return K.variable(q, name=name)
+
+model34 = load_model(r"D:\Dlung\model_LUNA_64_v34_describer_24.h5", custom_objects={'looks_linear_init':looks_linear_init})
 model_multi_relu = load_model(r"F:\Flung\descriptor models\model_des_v35_multi_64_24.h5")
 model34_repl = load_model(r"F:\Flung\descriptor models\model_des_v34_repl_64_24.h5")
 model35_relu = load_model(r"F:\Flung\descriptor models\model_des_v35_relu_64_24_multiout.h5")
